@@ -1,0 +1,9 @@
+.page {
+  width: 100%;
+  font-family: 'Inter', Arial, sans-serif;
+  /* position: relative; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+  background-color: #000;
+}

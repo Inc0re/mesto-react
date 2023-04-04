@@ -51,6 +51,7 @@ function App() {
         title='Редактировать профиль'
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
+        buttonText='Сохранить'
       >
         <div className='edit-form__wrapper'>
           <input
@@ -82,6 +83,7 @@ function App() {
         title='Новое место'
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
+        buttonText='Создать'
       >
         <div className='edit-form__wrapper'>
           <input
@@ -111,6 +113,7 @@ function App() {
         title='Обновить аватар'
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
+        buttonText='Сохранить'
       >
         <div className='edit-form__wrapper'>
           <input
@@ -127,8 +130,9 @@ function App() {
         name='confirm'
         title='Вы уверены?'
         onClose={closeAllPopups}
-      ></PopupWithForm>
-      <ImagePopup onClose={closeAllPopups} card={selectedCard}/>
+        buttonText='Да'
+      />
+      <ImagePopup onClose={closeAllPopups} card={selectedCard} />
     </>
   );
 }

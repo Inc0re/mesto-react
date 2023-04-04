@@ -8,7 +8,7 @@ export default function Card(props) {
       <button type='button' className='element__delete' />
       <img
         className='element__image'
-        alt=''
+        alt={props.card.name}
         src={props.card.link}
         onClick={handleClick}
       />

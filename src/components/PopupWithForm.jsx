@@ -1,8 +1,8 @@
 export default function PopupWithForm({isOpen, onClose, name, title, children, buttonText}) {
   return (
     <div
-      className={`popup popup_type_${name} ${
-        isOpen ? 'popup_opened' : ''
+      className={`popup popup_type_${name}${
+        isOpen ? ' popup_opened' : ''
       }`}
     >
       <div className='popup__container'>

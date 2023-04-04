@@ -1,8 +1,8 @@
 export default function ImagePopup({card, onClose}) {
   return (
     <div
-      className={`popup popup_bg-opacity_90 ${
-        card ? 'popup_opened' : null
+      className={`popup popup_bg-opacity_90${
+        card ? ' popup_opened' : ''
       }`}
       id='picture-popup'
     >

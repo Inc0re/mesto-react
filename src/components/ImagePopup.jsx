@@ -7,11 +7,11 @@ export default function ImagePopup(props) {
       id='picture-popup'
     >
       <figure className='popup__image-figure'>
-        <button className='popup__close' type='button' />
+        <button className='popup__close' type='button' onClick={props.onClose}/>
         <img
           alt=''
           className='popup__image'
-          src={props.card && props.card.url}
+          src={props.card && props.card.link}
         />
         <figcaption className='popup__image-caption'>
           {props.card && props.card.name}

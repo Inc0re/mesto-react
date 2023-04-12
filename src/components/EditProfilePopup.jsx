@@ -2,7 +2,7 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function EditProfilePopup({ isOpen, onClose }) {
+function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
   const currentUser = React.useContext(CurrentUserContext);
@@ -22,6 +22,17 @@ function EditProfilePopup({ isOpen, onClose }) {
     setDescription(e.target.value);
   }
 
+  function handleSubmit(e) {
+    // Запрещаем браузеру переходить по адресу формы
+    e.preventDefault();
+
+    // Передаём значения управляемых компонентов во внешний обработчик
+    onUpdateUser({
+      name: name,
+      about: description,
+    });
+  }
+
   return (
     <PopupWithForm
       name='edit-profile'
@@ -29,6 +40,7 @@ function EditProfilePopup({ isOpen, onClose }) {
       isOpen={isOpen}
       onClose={onClose}
       buttonText='Сохранить'
+      onSubmit={handleSubmit}
     >
       <div className='edit-form__wrapper'>
         <input
@@ -47,7 +59,7 @@ function EditProfilePopup({ isOpen, onClose }) {
       <div className='edit-form__wrapper'>
         <input
           className='edit-form__field'
-          name='job'
+          name='description'
           type='text'
           placeholder='Место работы'
           required

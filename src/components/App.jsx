@@ -51,6 +51,13 @@ function App() {
     setSelectedCard(card);
   }
 
+  function handleUpdateUser(data) {
+    api.setUserInfo(data).then(res => {
+      setCurrentUser(res);
+      closeAllPopups();
+    }).catch(err => console.log(err));
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -97,6 +104,7 @@ function App() {
       <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
+        onUpdateUser={handleUpdateUser}
       />
       <PopupWithForm
         name='add-place'

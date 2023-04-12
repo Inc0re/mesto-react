@@ -61,6 +61,16 @@ function App() {
       .catch(err => console.log(err));
   }
 
+  function handleUpdateAvatar(data) {
+    api
+      .updateUserAvatar(data)
+      .then(res => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch(err => console.log(err));
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -109,6 +119,11 @@ function App() {
         onClose={closeAllPopups}
         onUpdateUser={handleUpdateUser}
       />
+      <EditAvatarPopup
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
+        onUpdateAvatar={handleUpdateAvatar}
+      />
       <PopupWithForm
         name='add-place'
         title='Новое место'
@@ -139,10 +154,6 @@ function App() {
           <span className='edit-form__error' />
         </div>
       </PopupWithForm>
-      <EditAvatarPopup
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-      />
       <PopupWithForm
         name='confirm'
         title='Вы уверены?'

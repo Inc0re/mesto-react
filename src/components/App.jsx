@@ -6,6 +6,7 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { CardsContext } from '../contexts/CardsContext';
 import api from '../utils/Api';
@@ -124,36 +125,7 @@ function App() {
         onClose={closeAllPopups}
         onUpdateAvatar={handleUpdateAvatar}
       />
-      <PopupWithForm
-        name='add-place'
-        title='Новое место'
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
-        buttonText='Создать'
-      >
-        <div className='edit-form__wrapper'>
-          <input
-            className='edit-form__field'
-            name='name'
-            type='text'
-            placeholder='Название'
-            required
-            minLength='2'
-            maxLength='30'
-          />
-          <span className='edit-form__error' />
-        </div>
-        <div className='edit-form__wrapper'>
-          <input
-            className='edit-form__field'
-            name='link'
-            type='url'
-            placeholder='Ссылка на картинку'
-            required
-          />
-          <span className='edit-form__error' />
-        </div>
-      </PopupWithForm>
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
       <PopupWithForm
         name='confirm'
         title='Вы уверены?'

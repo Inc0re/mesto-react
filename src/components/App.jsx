@@ -4,6 +4,8 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import api from '../utils/Api';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -12,6 +14,14 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
+  const [currentUser, setCurrentUser] = React.useState(null);
+
+  React.useEffect(() => {
+    api.getCurrentUserInfo().then(res => {
+      setCurrentUser(res);
+      console.log(res.avatar);
+    }).catch(err => console.log(err));
+  }, []);
 
   function handelEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -37,7 +47,7 @@ function App() {
   }
 
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main
         onEditProfile={handleEditProfileClick}
@@ -133,7 +143,7 @@ function App() {
         buttonText='Да'
       />
       <ImagePopup onClose={closeAllPopups} card={selectedCard} />
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 

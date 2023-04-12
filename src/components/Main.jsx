@@ -1,20 +1,11 @@
 import React from 'react';
-import api from '../utils/Api';
 import Card from './Card';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { CardsContext } from '../contexts/CardsContext';
 
 export default function Main(props) {
-  const [cards, setCards] = React.useState([]);
   const currentUser = React.useContext(CurrentUserContext);
-
-  React.useEffect(() => {
-    api
-      .getInitialCards()
-      .then(data => {
-        setCards(data);
-      })
-      .catch(err => console.log(err));
-  }, []);
+  const cards = React.useContext(CardsContext);
 
   return (
     <main className='content'>
@@ -55,6 +46,8 @@ export default function Main(props) {
                 card={card}
                 key={card._id}
                 onCardClick={props.onCardClick}
+                onCardLike={props.onCardLike}
+                onCardDelete={props.onCardDelete}
               />
             );
           })}

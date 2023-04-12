@@ -27,7 +27,7 @@ class Api {
     });
   }
 
-  updateUserInfo(data) {
+  setUserInfo(data) {
     return this._request(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,

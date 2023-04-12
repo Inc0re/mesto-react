@@ -5,6 +5,7 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { CardsContext } from '../contexts/CardsContext';
 import api from '../utils/Api';
@@ -24,7 +25,6 @@ function App() {
       .getCurrentUserInfo()
       .then(res => {
         setCurrentUser(res);
-        console.log(res.avatar);
       })
       .catch(err => console.log(err));
     api
@@ -52,10 +52,13 @@ function App() {
   }
 
   function handleUpdateUser(data) {
-    api.setUserInfo(data).then(res => {
-      setCurrentUser(res);
-      closeAllPopups();
-    }).catch(err => console.log(err));
+    api
+      .setUserInfo(data)
+      .then(res => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch(err => console.log(err));
   }
 
   function closeAllPopups() {
@@ -136,24 +139,10 @@ function App() {
           <span className='edit-form__error' />
         </div>
       </PopupWithForm>
-      <PopupWithForm
-        name='edit-avatar'
-        title='Обновить аватар'
+      <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-        buttonText='Сохранить'
-      >
-        <div className='edit-form__wrapper'>
-          <input
-            className='edit-form__field'
-            name='link'
-            type='url'
-            placeholder='Ссылка на картинку'
-            required
-          />
-          <span className='edit-form__error' />
-        </div>
-      </PopupWithForm>
+      />
       <PopupWithForm
         name='confirm'
         title='Вы уверены?'

@@ -4,6 +4,7 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import EditProfilePopup from './EditProfilePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { CardsContext } from '../contexts/CardsContext';
 import api from '../utils/Api';
@@ -93,38 +94,10 @@ function App() {
         />
       </CardsContext.Provider>
       <Footer />
-      <PopupWithForm
-        name='edit-profile'
-        title='Редактировать профиль'
+      <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-        buttonText='Сохранить'
-      >
-        <div className='edit-form__wrapper'>
-          <input
-            className='edit-form__field'
-            name='name'
-            type='text'
-            placeholder='Имя'
-            required
-            minLength='2'
-            maxLength='40'
-          />
-          <span className='edit-form__error' />
-        </div>
-        <div className='edit-form__wrapper'>
-          <input
-            className='edit-form__field'
-            name='job'
-            type='text'
-            placeholder='Место работы'
-            required
-            minLength='2'
-            maxLength='200'
-          />
-          <span className='edit-form__error' />
-        </div>
-      </PopupWithForm>
+      />
       <PopupWithForm
         name='add-place'
         title='Новое место'

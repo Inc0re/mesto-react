@@ -5,6 +5,7 @@ export default function ImagePopup({card, onClose}) {
         card ? ' popup_opened' : ''
       }`}
       id='picture-popup'
+      onClick={onClose}
     >
       <figure className='popup__image-figure'>
         <button

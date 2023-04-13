@@ -1,11 +1,18 @@
 export default function ImagePopup({card, onClose}) {
+
+  function handleOverlayClick(e) {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  }
+
   return (
     <div
       className={`popup popup_bg-opacity_90${
         card ? ' popup_opened' : ''
       }`}
       id='picture-popup'
-      onClick={onClose}
+      onClick={handleOverlayClick}
     >
       <figure className='popup__image-figure'>
         <button

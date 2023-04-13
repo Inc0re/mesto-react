@@ -101,6 +101,13 @@ function App() {
       .catch(err => console.log(err));
   }
 
+  function handleAddPlaceSubmit(data) {
+    api.addNewCard(data).then(newCard => {
+      setCards([newCard, ...cards]);
+      closeAllPopups();
+    });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Header />
@@ -125,7 +132,11 @@ function App() {
         onClose={closeAllPopups}
         onUpdateAvatar={handleUpdateAvatar}
       />
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+      <AddPlacePopup
+        isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
+        onPlaceAdd={handleAddPlaceSubmit}
+      />
       <PopupWithForm
         name='confirm'
         title='Вы уверены?'

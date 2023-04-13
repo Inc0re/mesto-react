@@ -1,14 +1,39 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function AddPlacePopup({isAddPlacePopupOpen, closeAllPopups}) {
+function AddPlacePopup({isOpen, onClose, onPlaceAdd}) {
+
+  const [name, setName] = React.useState('');
+  const [link, setLink] = React.useState('');
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+
+  function handleLinkChange(e) {
+    setLink(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onPlaceAdd({
+      name: name,
+      link: link,
+    });
+    
+    setName('');
+    setLink('');
+  }
+
   return (
     <PopupWithForm
         name='add-place'
         title='Новое место'
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
+        isOpen={isOpen}
+        onClose={onClose}
         buttonText='Создать'
+        onSubmit={handleSubmit}
       >
         <div className='edit-form__wrapper'>
           <input
@@ -19,6 +44,8 @@ function AddPlacePopup({isAddPlacePopupOpen, closeAllPopups}) {
             required
             minLength='2'
             maxLength='30'
+            value={name}
+            onChange={handleNameChange}
           />
           <span className='edit-form__error' />
         </div>
@@ -29,6 +56,8 @@ function AddPlacePopup({isAddPlacePopupOpen, closeAllPopups}) {
             type='url'
             placeholder='Ссылка на картинку'
             required
+            value={link}
+            onChange={handleLinkChange}
           />
           <span className='edit-form__error' />
         </div>

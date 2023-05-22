@@ -3,6 +3,7 @@
 **Описание**
 
 Версия [проекта Mesto](https://github.com/Inc0re/mesto) переписанная на React
+
 [Открыть на GitHub Pages](https://inc0re.github.io/mesto-react/)
 
 **Использованные технологии**
